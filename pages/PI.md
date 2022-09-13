@@ -1,12 +1,12 @@
 ---
 layout              : page
 show_meta           : false
-title               : "Getting Started in 10 Steps"
-subheadline         : "A Step-by-Step Guide"
-teaser              : "This step-by-step guide helps you to customize Feeling Responsive to your needs."
+title               : "Rafat Damseh, PhD"
+subheadline         : "Assistant Professor, Computer Science and Software Engineering Department"
+teaser              : ""
 header:
-   image_fullwidth  : "header_homepage_13.jpg"
-permalink           : "/getting-started/"
+   image_fullwidth  : "PI_1.jpg"
+permalink           : "/About PI/"
 ---
 1. Open `_config.yml` and work it through, it's well documented.
 1. Add your own `logo.png` to `/assets/img/`.
