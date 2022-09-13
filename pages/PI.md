@@ -1,5 +1,5 @@
 ---
-layout              : page
+layout              : page2
 show_meta           : false
 title               : "Rafat Damseh, Ph.D."
 subheadline         : ""
