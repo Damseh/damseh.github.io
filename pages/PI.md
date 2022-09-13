@@ -1,7 +1,7 @@
 ---
 layout              : page2
 show_meta           : false
-title               : "Rafat Damseh, Ph.D."
+title               : "PI: Rafat Damseh, Ph.D."
 subheadline         : ""
 teaser              : "Assistant Professor, Computer Science and Software Engineering Department, UAEU"
 header:
