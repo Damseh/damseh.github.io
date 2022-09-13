@@ -1,20 +1,15 @@
 - name: GitHub
-  url: http://github.com/phlow
+  url: http://github.com/Damseh
   class: icon-github
   title: Code und mehr...
 
-- name: YouTube
-  url: http://www.youtube.com/PhlowMedia
-  class: icon-youtube
-  title: "Videos, Video-Anleitungen und Filme von Phlow auf YouTube"
-
 - name: Twitter
-  url: http://twitter.com/phlow
+  url: http://twitter.com/rafat_damseh
   class: icon-twitter
   title: "Immer das Neuste von Phlow gibt es auf Twitter"
-
-- name: Mixcloud
-  url: http://www.mixcloud.com/phlow/
+  
+- name: UAEU 
+  url: https://2021www.uaeu.ac.ae/en/cit/profile.shtml?email=rdamseh@uaeu.ac.ae
   class: icon-cloud
   title: "Mixe, was sonst?"
 
