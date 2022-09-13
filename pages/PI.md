@@ -1,9 +1,9 @@
 ---
 layout              : page
 show_meta           : false
-title               : "Rafat Damseh, PhD"
-subheadline         : "Assistant Professor, Computer Science and Software Engineering Department"
-teaser              : ""
+title               : "Rafat Damseh, Ph.D."
+subheadline         : ""
+teaser              : "Assistant Professor, Computer Science and Software Engineering Department"
 header:
    image_fullwidth  : "PI_1.jpg"
 permalink           : "/PI/"
