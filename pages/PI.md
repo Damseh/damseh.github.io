@@ -5,7 +5,7 @@ title               : "PI: Rafat Damseh, Ph.D."
 subheadline         : ""
 teaser              : "Assistant Professor, Computer Science and Software Engineering Department, UAEU"
 header:
-   image_fullwidth  : "PI_1.jpg"
+   image_fullwidth  : "PI_2.jpg"
 permalink           : "/PI/"
 ---
 1. Open `_config.yml` and work it through, it's well documented.
