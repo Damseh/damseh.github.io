@@ -6,7 +6,7 @@ subheadline         : "Assistant Professor, Computer Science and Software Engine
 teaser              : ""
 header:
    image_fullwidth  : "PI_1.jpg"
-permalink           : "/About PI/"
+permalink           : "/PI/"
 ---
 1. Open `_config.yml` and work it through, it's well documented.
 1. Add your own `logo.png` to `/assets/img/`.
