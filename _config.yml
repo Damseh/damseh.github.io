@@ -41,6 +41,9 @@ theme: minima
 plugins:
   - jekyll-feed
 
+include:
+  - _pages
+
 # Exclude from processing
 exclude:
   - Gemfile
