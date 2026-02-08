@@ -1,67 +1,13 @@
 ---
-layout: home
-title: Home
+title: "Home"
+layout: homelay
+excerpt: "RT2 Lab at Institut Curie"
+sitemap: false
+permalink: /
 ---
 
-# Welcome to the Medical Image Computing Lab
+### About the Lab
 
-We are a research group at the **United Arab Emirates University** led by **Dr. Rafat Damseh**, focusing on artificial intelligence and machine learning applications in healthcare and personalized medicine.
+Mauris vitae ultricies leo integer malesuada. Vulputate ut pharetra sit amet aliquam id diam maecenas. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Et tortor at risus viverra adipiscing at in. Urna nunc id cursus metus aliquam eleifend. Massa tincidunt dui ut ornare lectus. Rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Enim diam vulputate ut pharetra sit. Facilisi cras fermentum odio eu feugiat pretium. Commodo elit at imperdiet dui accumsan sit amet nulla. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque. Vivamus at augue eget arcu dictum varius duis. Faucibus pulvinar elementum integer enim neque volutpat. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.
 
-Our research spans medical image computing, computer-aided diagnostic systems, cerebrovascular network modeling, and biomedical data analysis using state-of-the-art deep learning techniques.
-
----
-
-## Research Focus Areas
-
-- **Medical Image Analysis**: Advanced segmentation, registration, and analysis of MRI, CT, and microscopy images
-- **AI for Cancer Diagnostics**: Foundation models for precision oncopathology
-- **Cerebrovascular Modeling**: Anatomical and biophysical modeling of brain vasculature
-- **Computer-Aided Diagnostics**: Automated diagnostic and prognostic systems
-- **Brain Connectivity**: Deep learning for structural connectivity analysis
-
----
-
-## Latest News
-
-{% assign sorted_news = site.data.news | sort: 'date' | reverse %}
-{% for item in sorted_news limit:5 %}
-**{{ item.date }}** - {{ item.title }}
-{% if item.content %}
-{{ item.content }}
-{% endif %}
-
-{% endfor %}
-
-[See all news →](/news/)
-
----
-
-## Featured Publications
-
-See our [Publications page](/publications/) for the complete list.
-
-- **2025**: New paper in *Artificial Intelligence in Medicine* on AI for pediatric medulloblastoma detection
-- **2025**: Research on OCT-TPM vascular translation in *Scientific Reports*
-- **2024**: Multiple papers in *Journal of Medical Internet Research* and *Scientific Reports*
-- **2021**: Laplacian flow dynamics published in *IEEE Transactions on Medical Imaging*
-
----
-
-## Open Source Software
-
-We develop and maintain several open-source tools for biomedical imaging:
-
-- **[VascGraph](https://github.com/Damseh/VascularGraph)**: Vascular network segmentation and analysis
-- **[VirtualMRI](https://github.com/Damseh/virtualMRI)**: MRI response simulation framework
-- **[AngioPulse](https://github.com/Damseh/angiopulse)**: Pulsatile flow dynamics in cerebral networks
-
----
-
-## Join Our Team
-
-We are always looking for motivated students (PhD, Master's, and undergraduate) interested in medical AI and machine learning. If you're passionate about applying AI to healthcare challenges, [contact us](/contact/)!
-
-**Current Openings:**
-- PhD positions in medical image analysis
-- Master's thesis projects in deep learning for healthcare
-- Undergraduate research assistants
+Cras adipiscing enim eu turpis. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Sed lectus vestibulum mattis ullamcorper velit. Ut faucibus pulvinar elementum integer. Mattis nunc sed blandit libero volutpat sed cras ornare. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Risus nullam eget felis eget nunc lobortis mattis. In tellus integer feugiat scelerisque varius morbi enim. Eget nunc lobortis mattis aliquam faucibus purus in. Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Augue neque gravida in fermentum et sollicitudin ac orci. Id donec ultrices tincidunt arcu non. Pharetra et ultrices neque ornare aenean euismod. Purus faucibus ornare suspendisse sed. Nibh tellus molestie nunc non blandit massa enim. Non diam phasellus vestibulum lorem sed risus. Vel eros donec ac odio tempor orci dapibus ultrices in. Libero id faucibus nisl tincidunt.
