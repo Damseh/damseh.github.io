@@ -6,38 +6,45 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Research Lab
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: ""
-url: ""
+title: MEDical Image Computing (MEDIC)
+email: rdamseh@uaeu.ac.ae
+description: >-
+  AI and Machine Learning for Medical Image Computing and Automated Dignostics at
+  United Arab Emirates University
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://damseh.github.io" # the base hostname & protocol for your site
 
-include:
-  - .htaccess
-  - _pages
+# Author settings
+author:
+  name: Dr. Rafat Damseh
+  bio: >-
+    Assistant Professor in Computer Science and Software Engineering at UAE University.
+  avatar: /assets/images/profile.jpg
+  email: rdamseh@uaeu.ac.ae
 
-sass:
-  sass_dir: _sass
+# Lab information
+lab:
+  name: Medical Image Computing Lab
+  head: Dr. Rafat Damseh
+  university: United Arab Emirates University
+  department: Computer Science and Software Engineering
+  address: Room 3070, P.O. Box 15551, Al Ain, UAE
 
-# Conversion
+# Social links
+github_username: Damseh
+google_scholar_id: vmQUi8AAAAAJ&hl=en&oi=ao
+twitter_username: # Add if you have one
+
+# Build settings
 markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
+theme: minima
+plugins:
+  - jekyll-feed
 
-# Markdown Processing
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-  parse_block_html: true # default for kramdown is false. This will enable using Markdown links
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
 
