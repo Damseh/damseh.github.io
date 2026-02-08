@@ -1,5 +1,5 @@
 ---
-title: "Medical Image Computing Lab"
+title: "Home"
 layout: homelay
 sitemap: false
 permalink: /
