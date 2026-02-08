@@ -1,8 +1,3 @@
----
-layout: none
-exclude: true
----
-
 # MEDical Image Computing Lab (MEDIC)
 
 Official website for the Medical Image Computing Lab at UAE University.
