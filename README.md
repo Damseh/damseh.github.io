@@ -1,129 +1,186 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/dcf3d5d0-a4a4-486f-bd9a-64b612392aad/deploy-status)](https://app.netlify.com/sites/brave-bell-c85a34/deploys)
+# MEDical Image Computing Lab (MEDIC)
 
-# Research lab website template
+Official website for the Medical Image Computing Lab at UAE University.
 
-This website is built with [Jekyll](https://jekyllrb.com/).
-It is derived from the great template provided by the
-[Allan Lab](https://www.allanlab.org/aboutwebsite.html), at Leiden University.
+🌐 **Live Site:** [https://damseh.github.io](https://damseh.github.io)
 
-## Setup
+---
 
-``` bash
-brew install ruby
-gem install bundler jekyll
-```
+## About
 
-Clone this repository, then install the dependencies:
+This is the source code for the Medical Image Computing Lab website, led by Dr. Rafat Damseh at the United Arab Emirates University. Our research focuses on:
 
-``` bash
+- AI and Machine Learning for Medical Imaging
+- Cancer Diagnostics using Deep Learning
+- Cerebrovascular Network Modeling
+- Brain Connectivity Analysis
+- Computer-Aided Diagnostic Systems
+
+---
+
+## Technology Stack
+
+- **Static Site Generator:** Jekyll 3.8.5
+- **Framework:** Bootstrap 3
+- **Hosting:** GitHub Pages
+- **Theme:** Custom research lab template
+
+---
+
+## Local Development
+
+### Prerequisites
+
+- Ruby 2.7 or higher
+- Bundler
+- Jekyll
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Damseh/damseh.github.io.git
+cd damseh.github.io
+
+# Install dependencies
 bundle install
-```
 
-## Run
-
-Run the local webserver with:
-
-``` bash
+# Run local server
 bundle exec jekyll serve
 ```
 
-## Contribute
+The site will be available at `http://localhost:4000`
 
-### Add a new member
-
-New members are stored as markdown files under
-[_pages/team/_posts](_pages/team/_posts).
-
-Each new member `.md` file must look like this:
-
-``` yaml
----
-layout: member
-category: staff
-title: Researcher Name
-image: researcher.png
-role: Lab Director
-permalink: 'team/researcher-name'
-social:
-    twitter: https://twitter.com/
-    linkedin: https://www.linkedin.com/
-    google-scholar: https://scholar.google.fr/
-    github: https://github.com/
-    website:
-    orcid: https://orcid.org/
-    research-gate: https://www.researchgate.net/
-education:
- - Education
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+## Project Structure
+
+```
+damseh.github.io/
+├── _config.yml              # Site configuration
+├── _data/
+│   ├── news.yml            # Lab news and updates
+│   └── publications.json   # Publications list
+├── _includes/              # Reusable HTML components
+├── _layouts/               # Page layouts
+│   ├── default.html
+│   ├── homelay.html
+│   └── member.html
+├── _pages/
+│   ├── home.md            # Homepage
+│   ├── research.md        # Research areas
+│   ├── publications.html  # Publications page
+│   ├── news.html          # News page
+│   ├── openings.md        # Open positions
+│   └── team/              # Team member profiles
+├── images/                # Images and media
+│   ├── team/             # Team member photos
+│   └── logo/             # Lab logo
+└── css/                   # Stylesheets
 ```
 
-### Add a new publication
+---
 
-Publications are stored as `.json` file under
-[_data/publications.json](_data/publications.json).
-This json file is exported from [Zotero](https://www.zotero.org/)
-bibliography tool.
+## Adding Content
 
-Just add a new entry to the list like this:
+### Adding a Team Member
 
-``` json
+Create a new file in `_pages/team/_posts/` with the format `YYYY-MM-DD-firstname-lastname.md`:
+
+```markdown
+---
+layout: member
+category: graduate  # or 'staff'
+title: Full Name
+image: filename.jpg
+role: PhD Student
+permalink: 'team/firstname-lastname'
+social:
+    github: https://github.com/username
+    google-scholar: https://scholar.google.com/...
+education:
+ - Degree, University, Year
+---
+
+Brief bio paragraph here.
+```
+
+Add their photo to `images/team/filename.jpg`
+
+### Adding a Publication
+
+Add to `_data/publications.json`:
+
+```json
 {
-  "id": "http://zotero.org/groups/2386072/items/NU9LTX7C",
+  "id": "unique_id",
   "type": "article-journal",
-  "title": "Foo",
-  "container-title": "IEEE Transactions on Medical Imaging",
-  "page": "448-459",
-  "volume": "38",
-  "issue": "2",
-  "source": "IEEE Xplore",
-  "abstract": "Bar",
-  "DOI": "10.1109/TMI.2018.2865709",
+  "title": "Paper Title",
+  "container-title": "Journal Name",
+  "volume": "XX",
+  "DOI": "10.xxxx/xxxxx",
   "author": [
-    {
-      "family": "",
-      "given": ""
-    },
+    {"family": "LastName", "given": "FirstName"}
   ],
-  "issued": {
-    "date-parts": [
-      [
-        "2019",
-        2
-      ]
-    ]
-  }
+  "issued": {"date-parts": [["YYYY", "MM"]]}
 }
 ```
 
-### Add news
+### Adding News
 
-News are stored as `.yml` file under [_data/news.yml](_data/news.yml).
-
-An entry looks like the following:
+Add to `_data/news.yml`:
 
 ```yaml
-- date: 03/09/19
-  title: "Something great"
-  tags:
-    - some
-    - tags
-  content: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Eu turpis egestas pretium aenean. Luctus venenatis lectus magna fringilla
-    urna porttitor. Lorem ipsum dolor sit amet. Pellentesque massa placerat
-    duis ultricies. Commodo viverra maecenas accumsan lacus vel.
+- date: DD/MM/YYYY
+  title: "News Title"
+  tags: [publication, grant, award]
+  content: "Description of the news"
 ```
 
-### Edit template
+---
 
-We use [Bootstrap](https://getbootstrap.com/) for designing the website.
-Feel free to modify either the [_pages](_pages/) or the
-[_layouts](_layouts/) components.
+## Deployment
+
+The site automatically deploys to GitHub Pages when you push to the `main` branch:
+
+```bash
+git add .
+git commit -m "Update content"
+git push origin main
+```
+
+Changes will be live at https://damseh.github.io within 2-3 minutes.
+
+---
+
+## Open Source Tools
+
+Our lab develops and maintains several open-source projects:
+
+- **[VascGraph](https://github.com/Damseh/VascularGraph)** - Vascular network segmentation and analysis
+- **[VirtualMRI](https://github.com/Damseh/virtualMRI)** - Monte Carlo MRI simulation
+- **[AngioPulse](https://github.com/Damseh/angiopulse)** - Pulsatile flow dynamics simulation
+
+---
+
+## Contact
+
+**Dr. Rafat Damseh**  
+Assistant Professor  
+Department of Computer Science and Software Engineering  
+United Arab Emirates University  
+📧 rdamseh@uaeu.ac.ae  
+🏢 Room 3070, P.O. Box 15551, Al Ain, UAE
+
+---
+
+## Credits
+
+Website template adapted from the [Allan Lab](https://github.com/mpa139/allanlab) Jekyll theme for research groups.
+
+---
+
+## License
+
+Content © 2021-2025 Medical Image Computing Lab, UAE University.  
+Website code licensed under MIT License.
