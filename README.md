@@ -1,5 +1,3 @@
-# MEDical Image Computing Lab (MEDIC)
-
 Official website for the Medical Image Computing Lab at UAE University.
 
 🌐 **Live Site:** [https://damseh.github.io](https://damseh.github.io)
