@@ -2,6 +2,14 @@
 layout: default
 ---
 
+<style>
+#carousel .carousel-inner .item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+</style>
+
 <div id="homeid" class="col-sm-8 ml-0 nopadding-left">
 <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover" >
 <!-- Menu -->
@@ -9,6 +17,9 @@ layout: default
 <li data-target="#carousel" data-slide-to="0" class="active"></li>
 <li data-target="#carousel" data-slide-to="1"></li>
 <li data-target="#carousel" data-slide-to="2"></li>
+<li data-target="#carousel" data-slide-to="3"></li>
+<li data-target="#carousel" data-slide-to="4"></li>
+<li data-target="#carousel" data-slide-to="5"></li>
 </ol>
 
 <!-- Items -->
@@ -21,6 +32,15 @@ layout: default
 </div>
 <div class="item">
 <img src="{{ site.url }}{{ site.baseurl }}/images/slider/slide3.png" alt="Computational Pathology" />
+</div>
+<div class="item">
+<img src="{{ site.url }}{{ site.baseurl }}/images/slider/slide4.png" alt="Cerebrovascular Modeling" />
+</div>
+<div class="item">
+<img src="{{ site.url }}{{ site.baseurl }}/images/slider/slide5.png" alt="Dental AI and Orthodontics" />
+</div>
+<div class="item">
+<img src="{{ site.url }}{{ site.baseurl }}/images/slider/slide6.png" alt="Open Source Tools" />
 </div>
 </div>
 <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
