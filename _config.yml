@@ -10,7 +10,7 @@ title: MEDical Image Computing Lab (MEDIC)
 email: rdamseh@uaeu.ac.ae
 description: >-
   AI and Machine Learning for Medical Image Computing and Automated Dignostics at
-  United Arab Emirates University
+  UAEU
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 
@@ -18,7 +18,7 @@ url: "" # the base hostname & protocol for your site
 author:
   name: Dr. Rafat Damseh
   bio: >-
-    Assistant Professor in Computer Science and Software Engineering at UAE University.
+    Associate Professor in Computer Science and Software Engineering at UAEU.
   avatar: /assets/images/profile.jpg
   email: rdamseh@uaeu.ac.ae
 
@@ -26,7 +26,7 @@ author:
 lab:
   name: Medical Image Computing Lab
   head: Dr. Rafat Damseh
-  university: United Arab Emirates University
+  university: UAEU
   department: Computer Science and Software Engineering
   address: Room 3070, P.O. Box 15551, Al Ain, UAE
 

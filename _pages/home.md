@@ -8,7 +8,7 @@ permalink: /
 
 ## Welcome to the Medical Image Computing Lab
 
-We are a research group at the [United Arab Emirates University](https://www.uaeu.ac.ae/), Department of Computer Science and Software Engineering, College of Information Technology. Our lab, led by [Dr. Rafat Damseh](https://www.uaeu.ac.ae/en/cit/profile.shtml?email=rdamseh@uaeu.ac.ae), focuses on developing AI and machine learning solutions for medical image analysis, with applications spanning cancer diagnostics, cerebrovascular modeling, brain connectivity, and dental AI.
+We are a research group at [UAEU](https://www.uaeu.ac.ae/), Department of Computer Science and Software Engineering, College of Information Technology. Our lab, led by [Dr. Rafat Damseh](https://www.uaeu.ac.ae/en/cit/profile.shtml?email=rdamseh@uaeu.ac.ae), focuses on developing AI and machine learning solutions for medical image analysis, with applications spanning cancer diagnostics, cerebrovascular modeling, brain connectivity, and dental AI.
 
 Dr. Damseh established MEDIC at UAEU in 2021 and co-directs the Cognition, AI and Robotics Lab (CAIR) under the Industry 4.0 Initiative. Prior to UAEU, he led machine learning projects at the Computational Clinical Neuroimaging Group at MGH Martinos Center for Biomedical Imaging, Harvard Medical School, and earned his Ph.D. in Biomedical/Computer Engineering from Polytechnique Montréal.
 

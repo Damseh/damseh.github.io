@@ -1,6 +1,6 @@
 # MEDical Image Computing Lab (MEDIC)
 
-Official website for the Medical Image Computing Lab at UAE University.
+Official website for the Medical Image Computing Lab at UAEU.
 
 🌐 **Live Site:** [https://damseh.github.io](https://damseh.github.io)
 
@@ -8,7 +8,7 @@ Official website for the Medical Image Computing Lab at UAE University.
 
 ## About
 
-This is the source code for the Medical Image Computing Lab website, led by Dr. Rafat Damseh at the United Arab Emirates University. Our research focuses on:
+This is the source code for the Medical Image Computing Lab website, led by Dr. Rafat Damseh at UAEU. Our research focuses on:
 
 - AI and Machine Learning for Medical Imaging
 - Cancer Diagnostics using Deep Learning
@@ -166,9 +166,9 @@ Our lab develops and maintains several open-source projects:
 ## Contact
 
 **Dr. Rafat Damseh**  
-Assistant Professor  
+Associate Professor  
 Department of Computer Science and Software Engineering  
-United Arab Emirates University  
+UAEU  
 📧 rdamseh@uaeu.ac.ae  
 🏢 Room 3070, P.O. Box 15551, Al Ain, UAE
 
@@ -182,5 +182,5 @@ Website template adapted from the [Allan Lab](https://github.com/mpa139/allanlab
 
 ## License
 
-Content © 2021-2025 Medical Image Computing Lab, UAE University.  
+Content © 2021-2025 Medical Image Computing Lab, UAEU.  
 Website code licensed under MIT License.
