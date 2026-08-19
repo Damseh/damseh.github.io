@@ -7,7 +7,8 @@ layout: default
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ site.baseurl }}/team">Team</a></li>
-            <li class="breadcrumb-item text-capitalize"><a href="{{ site.baseurl }}/team#{{ page.category }}">{{ page.category }}</a></li>
+            {% assign member_category = site.data.team_categories | where: "slug", page.category | first %}
+            <li class="breadcrumb-item"><a href="{{ site.baseurl }}/team#{{ page.category }}">{{ member_category.name | default: page.category }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
         </ol>
         </nav>

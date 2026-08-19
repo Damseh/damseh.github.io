@@ -1,0 +1,11 @@
+# Order here controls the order of sections on the Team page.
+- slug: staff
+  name: Lab Director
+- slug: phd
+  name: PhD Students
+- slug: msc
+  name: MSc Students
+- slug: ra
+  name: Research Assistants
+- slug: undergrad
+  name: Undergraduate Students
