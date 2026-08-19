@@ -68,7 +68,6 @@ damseh.github.io/
 │   └── member.html
 ├── _pages/
 │   ├── home.md            # Homepage
-│   ├── research.md        # Research areas
 │   ├── publications.html  # Publications page
 │   ├── news.html          # News page
 │   ├── openings.md        # Open positions
