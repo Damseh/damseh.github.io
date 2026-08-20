@@ -15,7 +15,13 @@ layout: default
     </div>
     <div class="row text-center">
         <!-- Avatar -->
-        <img src="{{ site.url }}{{ site.baseurl }}/images/team/{{ page.image }}"
+        {% assign member_photo = 'placeholder.svg' %}
+        {% if page.image %}
+            {% assign wanted_photo = '/images/team/' | append: page.image %}
+            {% assign found_photo = site.static_files | where: 'path', wanted_photo | first %}
+            {% if found_photo %}{% assign member_photo = page.image %}{% endif %}
+        {% endif %}
+        <img src="{{ site.url }}{{ site.baseurl }}/images/team/{{ member_photo }}"
              class="img-circle"
              style="max-width: 200px;"/>
 

@@ -17,8 +17,14 @@ permalink: /team/
 <div class="card team-member-card">
     <div class="row mt-3">
         <div class="col-md-2">
+            {% assign card_photo = 'placeholder.svg' %}
+            {% if member.image %}
+                {% assign wanted_photo = '/images/team/' | append: member.image %}
+                {% assign found_photo = site.static_files | where: 'path', wanted_photo | first %}
+                {% if found_photo %}{% assign card_photo = member.image %}{% endif %}
+            {% endif %}
             <a href={{member.url}}>
-                <img src="{{ site.url }}{{ site.baseurl }}/images/team/{{ member.image }}"
+                <img src="{{ site.url }}{{ site.baseurl }}/images/team/{{ card_photo }}"
                     class="card-img img-responsive img-thumbnail"
                     style="max-width: 100px;"/>
             </a>
