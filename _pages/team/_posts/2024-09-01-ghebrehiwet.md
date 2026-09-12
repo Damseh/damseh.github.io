@@ -3,7 +3,7 @@ layout: member
 category: ra
 title: Isaias Ghebrehiwet
 image: isa.jpg
-role: Research Assistant (Alumnus)
+role: Research Assistant (Alumni)
 permalink: 'team/ghebrehiwet'
 education:
  - B.Sc. in Computer Science, UAEU
