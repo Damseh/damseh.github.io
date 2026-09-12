@@ -1,20 +1,101 @@
 ---
 title: "News"
 layout: default
-excerpt: "RT2 Lab at Institut Curie"
+excerpt: "MEDIC Lab -- News"
 sitemap: false
 permalink: /news.html
 ---
 <h1>{{page.title}}</h1>
 
-<ul class="list-unstyled">
-    {% for article in site.data.news %}
-        <li class="media">
-            <div class="media-body">
-            <h4 class="mt-0 mb-1">{{ article.title }}</h4>
-            <p><small>{{ article.date }}</small></p>
-            {{ article.content }}
-            </div>
-        </li>
-    {% endfor %}
-</ul>
+{% comment %}
+News is read at page load from the URL in _config.yml (news_source) — typically a
+GitHub Gist raw link — so items can be updated without touching this repository.
+
+Expected format in that file, one block per item:
+
+    ## 2026-09-10 | Paper accepted at MICCAI 2026
+    Body text. Supports **bold**, *italic*, `code` and [links](https://example.com).
+    A blank line starts a new paragraph.
+
+The date part (before the "|") is optional. Newest first is recommended —
+items render in the order they appear in the file.
+{% endcomment %}
+
+<div id="news-status" class="text-muted"></div>
+<ul class="list-unstyled" id="news-list"></ul>
+
+<script>
+(function () {
+  var SOURCE = {{ site.news_source | default: '' | jsonify }};
+  var status = document.getElementById('news-status');
+  var list = document.getElementById('news-list');
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function inline(s) {
+    return esc(s)
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+               '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+
+  function parseNews(text) {
+    var items = [], cur = null;
+    text.split(/\r?\n/).forEach(function (line) {
+      var m = line.match(/^##\s+(.*)$/);
+      if (m) {
+        if (cur) { items.push(cur); }
+        var head = m[1], date = '', title = head, sep = head.indexOf('|');
+        if (sep !== -1) {
+          date = head.slice(0, sep).trim();
+          title = head.slice(sep + 1).trim();
+        }
+        cur = { date: date, title: title, body: [] };
+      } else if (cur) {
+        cur.body.push(line.trim());
+      }
+    });
+    if (cur) { items.push(cur); }
+    return items.map(function (it) {
+      var paras = it.body.join('\n').split(/\n\s*\n/).filter(function (p) { return p.trim(); });
+      return {
+        date: it.date,
+        title: it.title,
+        html: paras.map(function (p) {
+          return '<p>' + inline(p.replace(/\n/g, ' ').trim()) + '</p>';
+        }).join('')
+      };
+    });
+  }
+
+  function render(items) {
+    if (!items.length) { status.textContent = 'No news yet.'; return; }
+    status.textContent = '';
+    list.innerHTML = items.map(function (it) {
+      return '<li class="media"><div class="media-body">' +
+             '<h4 class="mt-0 mb-1">' + esc(it.title) + '</h4>' +
+             (it.date ? '<p><small>' + esc(it.date) + '</small></p>' : '') +
+             it.html + '</div></li>';
+    }).join('');
+  }
+
+  if (!SOURCE) { status.textContent = 'No news yet.'; return; }
+
+  status.textContent = 'Loading news…';
+  fetch(SOURCE, { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status); }
+      return r.text();
+    })
+    .then(function (text) { render(parseNews(text)); })
+    .catch(function (err) {
+      status.textContent = 'News could not be loaded right now.';
+      if (window.console) { console.error('News fetch failed:', err); }
+    });
+})();
+</script>

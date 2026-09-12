@@ -30,6 +30,11 @@ lab:
   department: Computer Science and Software Engineering
   address: Room 3070, P.O. Box 15551, Al Ain, UAE
 
+# News feed
+# Public raw URL of the markdown file holding news items (e.g. a GitHub Gist raw link).
+# Leave blank to hide the news list. See _pages/news.html for the expected format.
+news_source: "https://gist.githubusercontent.com/Damseh/0a5647f0e57123d34d44d7e0597ce298/raw/news.md"
+
 # Social links
 github_username: Damseh
 google_scholar_id: vmQUi8AAAAAJ&hl=en&oi=ao
