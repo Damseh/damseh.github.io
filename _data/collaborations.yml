@@ -11,3 +11,23 @@
 # - name: KU Leuven
 #   logo: kuleuven.png
 #   url: https://www.kuleuven.be/
+
+- name: Polytechnique Montreal
+  logo: polymtl.ca
+  url: https://www.polymtl.ca/
+
+- name: Universite de Montreal
+  logo: udem.png
+  url: https://www.umontreal.ca/en/
+
+- name: Harvard Medical School
+  logo: hms.png
+  url: https://hms.harvard.edu/
+
+- name: Weill Cornell Medicine-Qatar
+  logo: cornell.png
+  url: https://qatar-weill.cornell.edu/
+
+- name: KU Leuven
+  logo: kuleuven.png
+  url: https://www.kuleuven.be/english/about-kuleuven/
