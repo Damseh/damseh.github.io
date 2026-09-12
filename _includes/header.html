@@ -17,7 +17,7 @@
       {% assign college_logo = site.static_files | where: 'path', college_path | first %}
       {% if college_logo %}
       <img class="brand-logo" src="{{ site.url }}{{ site.baseurl }}{{ college_path }}"
-           alt="{{ site.lab.department }}"/>
+           alt="{{ site.lab.college }}"/>
       {% endif %}
       {% assign lab_path = '/images/logo/lab-logo.png' %}
       {% assign lab_logo = site.static_files | where: 'path', lab_path | first %}
