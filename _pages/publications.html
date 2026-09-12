@@ -1,52 +1,231 @@
 ---
 title: "Publications"
 layout: default
-excerpt: "RT2 Lab -- Publications."
+excerpt: "MEDIC Lab -- Publications"
 sitemap: false
 permalink: /publications/
 ---
 
 <h1>{{page.title}}</h1>
 
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
+{% comment %}
+Publications are read at page load from the BibTeX file at site.publications_source
+(_config.yml) — typically a GitHub Gist raw link — so the list can be updated
+without touching this repository. Paste standard BibTeX entries into that file;
+each entry renders as a citation whose BibTeX can be expanded and copied.
+{% endcomment %}
 
-    {% for publi in site.data.publications %}
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion"
-               href="#collapse{{forloop.index}}"
-               style="color: inherit;">
-            <!-- authors -->
-            {% assign authors = "" | split:"/" %}
-            {% for author in publi.author %}
-                {% assign authors = authors | push: author.family %}
-            {% endfor %}
-            {{ authors | array_to_sentence_string }},
+<div id="pub-status" class="text-muted"></div>
+<div class="panel-group" id="accordion"></div>
 
-            <!-- title with link -->
-            "{{ publi.title }}",
+<script>
+(function () {
+  var SOURCE = {{ site.publications_source | default: '' | jsonify }};
+  var status = document.getElementById('pub-status');
+  var out = document.getElementById('accordion');
 
-            <!-- container -->
-            <b>{{ publi.container-title }}</b>
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
 
-            <!-- issued date -->
-            ({{ publi.issued.date-parts | jsonify | slice: 3,4 }}),
+  var ACCENTS = {
+    "\\'a":"\u00e1","\\'e":"\u00e9","\\'i":"\u00ed","\\'o":"\u00f3","\\'u":"\u00fa",
+    "\\'c":"\u0107","\\'n":"\u0144",
+    '\\"a':"\u00e4",'\\"e':"\u00eb",'\\"i':"\u00ef",'\\"o':"\u00f6",'\\"u':"\u00fc",
+    "\\`a":"\u00e0","\\`e":"\u00e8","\\`i":"\u00ec","\\`o":"\u00f2","\\`u":"\u00f9",
+    "\\^a":"\u00e2","\\^e":"\u00ea","\\^i":"\u00ee","\\^o":"\u00f4","\\^u":"\u00fb",
+    "\\~n":"\u00f1","\\~a":"\u00e3","\\~o":"\u00f5",
+    "\\c c":"\u00e7","\\cc":"\u00e7","\\ss":"\u00df","\\aa":"\u00e5","\\o":"\u00f8","\\l":"\u0142"
+  };
 
-            <!-- DOI -->
-            {% if publi.DOI %}
-                <a href="https://doi.org/{{publi.DOI}}">DOI:{{publi.DOI}}</a>
-            {% endif %}
-            </a>
-        </div>
+  function deLatex(s) {
+    if (!s) { return ''; }
+    s = s.replace(/\{\\([`'"^~])\{?([A-Za-z])\}?\}|\\([`'"^~])\{?([A-Za-z])\}?/g,
+      function (m, a1, a2, b1, b2) {
+        return ACCENTS["\\" + (a1 || b1) + (a2 || b2)] || (a2 || b2);
+      });
+    Object.keys(ACCENTS).forEach(function (k) {
+      s = s.split('{' + k + '}').join(ACCENTS[k]).split(k).join(ACCENTS[k]);
+    });
+    return s.replace(/\\%/g, '%').replace(/\\&/g, '&').replace(/\\\$/g, '$')
+            .replace(/\\_/g, '_').replace(/\\#/g, '#')
+            .replace(/---/g, '\u2014').replace(/--/g, '\u2013')
+            .replace(/``|''/g, '"').replace(/~/g, ' ')
+            .replace(/[{}]/g, '').replace(/\s+/g, ' ').trim();
+  }
 
-        <div id="collapse{{forloop.index}}" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>{{ publi.abstract }}</p>
+  function parseBibtex(text) {
+    var entries = [], i = 0, n = text.length;
+    while (i < n) {
+      var at = text.indexOf('@', i);
+      if (at === -1) { break; }
+      var m = /^@([A-Za-z]+)\s*[\{\(]/.exec(text.slice(at));
+      if (!m) { i = at + 1; continue; }
+      var type = m[1].toLowerCase();
+      var bodyStart = at + m[0].length, depth = 1, j = bodyStart;
+      while (j < n && depth > 0) {
+        var c = text[j];
+        if (c === '\\') { j += 2; continue; }
+        if (c === '{') { depth++; } else if (c === '}') { depth--; }
+        j++;
+      }
+      var body = text.slice(bodyStart, j - 1);
+      i = j;
+      if (type === 'comment' || type === 'preamble' || type === 'string') { continue; }
 
-                <a class="btn btn-outline-primary" href="https://doi.org/{{publi.DOI}}"
-                   role="button" target="blank">Link</a>
-            </div>
-        </div>
-    {% endfor %}
-    </div>
-</div>
+      var comma = body.indexOf(',');
+      var key = (comma === -1 ? body : body.slice(0, comma)).trim();
+      var rest = comma === -1 ? '' : body.slice(comma + 1);
+      var fields = {}, p = 0;
+      while (p < rest.length) {
+        var eq = rest.indexOf('=', p);
+        if (eq === -1) { break; }
+        var name = rest.slice(p, eq).trim().replace(/^,+/, '').trim().toLowerCase();
+        var q = eq + 1;
+        while (q < rest.length && /\s/.test(rest[q])) { q++; }
+        var val = '';
+        if (rest[q] === '{') {
+          var d = 1; q++; var s0 = q;
+          while (q < rest.length && d > 0) {
+            if (rest[q] === '\\') { q += 2; continue; }
+            if (rest[q] === '{') { d++; } else if (rest[q] === '}') { d--; }
+            q++;
+          }
+          val = rest.slice(s0, q - 1);
+        } else if (rest[q] === '"') {
+          var d2 = 0; q++; var s1 = q;
+          while (q < rest.length) {
+            if (rest[q] === '\\') { q += 2; continue; }
+            if (rest[q] === '{') { d2++; } else if (rest[q] === '}') { d2--; }
+            else if (rest[q] === '"' && d2 === 0) { break; }
+            q++;
+          }
+          val = rest.slice(s1, q); q++;
+        } else {
+          var s2 = q;
+          while (q < rest.length && rest[q] !== ',') { q++; }
+          val = rest.slice(s2, q).trim();
+        }
+        if (name) { fields[name] = val; }
+        var nc = rest.indexOf(',', q);
+        p = nc === -1 ? rest.length : nc + 1;
+      }
+      entries.push({ type: type, key: key, fields: fields,
+                     raw: text.slice(at, j).trim() });
+    }
+    return entries;
+  }
+
+  function splitAuthors(s) {
+    var out = [], depth = 0, cur = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+      if (c === '{') { depth++; }
+      if (c === '}') { depth--; }
+      if (depth === 0 && s.slice(i, i + 5).toLowerCase() === ' and ') {
+        out.push(cur); cur = ''; i += 4; continue;
+      }
+      cur += c;
+    }
+    if (cur.trim()) { out.push(cur); }
+    return out.map(function (a) { return a.trim(); }).filter(Boolean);
+  }
+
+  function formatAuthor(a) {
+    a = deLatex(a);
+    var last, firsts;
+    if (a.indexOf(',') !== -1) {
+      var parts = a.split(',');
+      last = parts[0].trim();
+      firsts = parts.slice(1).join(' ').trim();
+    } else {
+      var w = a.split(/\s+/); last = w.pop(); firsts = w.join(' ');
+    }
+    var initials = firsts ? firsts.split(/[\s.-]+/).filter(Boolean)
+        .map(function (t) { return t[0].toUpperCase() + '.'; }).join(' ') : '';
+    return (initials ? initials + ' ' : '') + last;
+  }
+
+  function authorList(s) {
+    var names = splitAuthors(s || '').map(formatAuthor);
+    if (!names.length) { return ''; }
+    if (names.length === 1) { return names[0]; }
+    return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+  }
+
+  function citation(e) {
+    var f = e.fields;
+    var bits = [];
+    var authors = authorList(f.author);
+    if (authors) { bits.push(esc(authors) + ','); }
+    if (f.title) { bits.push('"' + esc(deLatex(f.title)) + ',"'); }
+    var venue = deLatex(f.journal || f.booktitle || f.publisher || f.school || '');
+    if (venue) { bits.push('<em>' + esc(venue) + '</em>'); }
+    var vol = [];
+    if (f.volume) { vol.push('vol. ' + esc(deLatex(f.volume))); }
+    if (f.number) { vol.push('no. ' + esc(deLatex(f.number))); }
+    if (f.pages) { vol.push('pp. ' + esc(deLatex(f.pages))); }
+    if (vol.length) { bits.push(vol.join(', ')); }
+    if (f.year) { bits.push('(' + esc(deLatex(f.year)) + ')'); }
+    return bits.join(' ');
+  }
+
+  function linkFor(f) {
+    if (f.doi) { return 'https://doi.org/' + f.doi.replace(/^https?:\/\/doi\.org\//, ''); }
+    if (f.url) { return f.url; }
+    return '';
+  }
+
+  function render(entries) {
+    if (!entries.length) { status.textContent = 'No publications listed yet.'; return; }
+    entries.sort(function (a, b) {
+      return (parseInt(b.fields.year, 10) || 0) - (parseInt(a.fields.year, 10) || 0);
+    });
+    status.textContent = '';
+    out.innerHTML = '<div class="panel panel-default">' + entries.map(function (e, idx) {
+      var href = linkFor(e.fields);
+      return '' +
+        '<div class="panel-heading">' +
+          '<a data-toggle="collapse" data-parent="#accordion" href="#pub' + idx + '"' +
+             ' style="color: inherit;">' + citation(e) + '</a>' +
+        '</div>' +
+        '<div id="pub' + idx + '" class="panel-collapse collapse"><div class="panel-body">' +
+          (href ? '<p><a href="' + esc(href) + '" target="_blank" rel="noopener">' + esc(href) + '</a></p>' : '') +
+          '<pre class="bibtex-block">' + esc(e.raw) + '</pre>' +
+          '<button type="button" class="btn btn-default btn-sm copy-bibtex"' +
+                 ' data-index="' + idx + '">Copy BibTeX</button>' +
+        '</div></div>';
+    }).join('') + '</div>';
+
+    out.addEventListener('click', function (ev) {
+      var btn = ev.target.closest ? ev.target.closest('.copy-bibtex') : null;
+      if (!btn) { return; }
+      var pre = btn.parentNode.querySelector('.bibtex-block');
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = old; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.textContent).then(done, function () {});
+      } else {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        try { document.execCommand('copy'); done(); } catch (err) {}
+      }
+    });
+  }
+
+  if (!SOURCE) { status.textContent = 'No publications listed yet.'; return; }
+
+  status.textContent = 'Loading publications…';
+  fetch(SOURCE, { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) { throw new Error('HTTP ' + r.status); } return r.text(); })
+    .then(function (text) { render(parseBibtex(text)); })
+    .catch(function (err) {
+      status.textContent = 'Publications could not be loaded right now.';
+      if (window.console) { console.error('Publications fetch failed:', err); }
+    });
+})();
+</script>

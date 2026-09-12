@@ -143,3 +143,16 @@ body { padding-top: 62px; }
 @media (max-width: 1199px) { body { padding-top: 58px; } }
 @media (min-width: 768px) and (max-width: 889px) { body { padding-top: 104px; } }
 @media (max-width: 767px) { body { padding-top: 74px; } }
+
+/* BibTeX blocks on the publications page */
+
+.bibtex-block {
+  white-space: pre-wrap;   /* long field lines wrap instead of being clipped */
+  word-break: break-word;
+  font-size: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.panel-heading .collapsed,
+.panel-heading a { text-decoration: none; }

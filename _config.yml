@@ -36,6 +36,12 @@ lab:
 # Leave blank to hide the news list. See _pages/news.html for the expected format.
 news_source: "https://gist.githubusercontent.com/Damseh/0a5647f0e57123d34d44d7e0597ce298/raw/news.md"
 
+# Publications feed
+# Public raw URL of a BibTeX (.bib) file — e.g. a GitHub Gist raw link.
+# Use the URL WITHOUT a revision SHA so it always serves the latest version.
+# Leave blank to hide the list.
+publications_source: "https://gist.githubusercontent.com/Damseh/b3d2715b8fe61aa74f37b7eba5a2673a/raw/publications.bib"
+
 # Social links
 github_username: Damseh
 google_scholar_id: vmQUi8AAAAAJ&hl=en&oi=ao
