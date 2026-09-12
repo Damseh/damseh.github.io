@@ -92,3 +92,54 @@ body, p, li, div, h1, h2, h3, h4, h5, h6, ul, ol, blockquote {
     height: 90px;
   }
 }
+
+/* Brand logos in the fixed top navbar */
+
+/* The site content column is capped at 900px, but the navbar needs more room
+   for two logos + the lab name + five links, so widen it there only. */
+.navbar .container-fluid {
+  max-width: 1140px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 10px;
+}
+
+.navbar-brand .brand-logo {
+  height: 30px;
+  width: auto;
+  margin-right: 9px;
+}
+
+.navbar-brand .brand-text {
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+/* Buy back horizontal room on narrower desktops / tablets. */
+@media (max-width: 1199px) {
+  .navbar-nav > li > a { padding-left: 10px; padding-right: 10px; }
+  .navbar-brand .brand-logo { height: 26px; margin-right: 7px; }
+  .navbar-brand .brand-text { font-size: 14px; }
+}
+
+@media (max-width: 767px) {
+  .navbar-brand {
+    max-width: calc(100% - 60px); /* leave room for the hamburger toggle */
+  }
+  .navbar-brand .brand-logo { height: 24px; margin-right: 6px; }
+  .navbar-brand .brand-text { font-size: 13px; white-space: normal; }
+}
+
+/* The fixed navbar is taller now, and between roughly 768-889px the brand and
+   links wrap onto two rows, so reserve enough space for the content below it. */
+body { padding-top: 62px; }
+
+@media (max-width: 1199px) { body { padding-top: 58px; } }
+@media (min-width: 768px) and (max-width: 889px) { body { padding-top: 104px; } }
+@media (max-width: 767px) { body { padding-top: 74px; } }

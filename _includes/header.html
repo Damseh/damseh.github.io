@@ -8,7 +8,25 @@
 		<span class="icon-bar"></span>
 	  </button>
 
-    <a class="navbar-brand" href="{{ site.url }}{{ site.baseurl }}/">{{ site.title }}</a>
+    {% comment %}
+      Logos are shown only when the file actually exists, so a missing one
+      degrades to text rather than a broken image.
+    {% endcomment %}
+    <a class="navbar-brand" href="{{ site.url }}{{ site.baseurl }}/">
+      {% assign college_path = '/images/logo/college-logo.png' %}
+      {% assign college_logo = site.static_files | where: 'path', college_path | first %}
+      {% if college_logo %}
+      <img class="brand-logo" src="{{ site.url }}{{ site.baseurl }}{{ college_path }}"
+           alt="{{ site.lab.department }}"/>
+      {% endif %}
+      {% assign lab_path = '/images/logo/lab-logo.png' %}
+      {% assign lab_logo = site.static_files | where: 'path', lab_path | first %}
+      {% if lab_logo %}
+      <img class="brand-logo" src="{{ site.url }}{{ site.baseurl }}{{ lab_path }}"
+           alt="{{ site.lab.name }} logo"/>
+      {% endif %}
+      <span class="brand-text">{{ site.title }}</span>
+    </a>
 	</div>
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
 	  <ul class="nav navbar-nav navbar-right">
