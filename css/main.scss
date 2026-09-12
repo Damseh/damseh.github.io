@@ -54,3 +54,41 @@ figcaption {
 body, p, li, div, h1, h2, h3, h4, h5, h6, ul, ol, blockquote {
   text-align: left !important;
 }
+
+/* Collaboration logo grid */
+
+.logo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+
+.logo-grid-item {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 110px;
+  padding: 10px;
+  margin: 0 10px 20px 0;
+}
+
+/* Fill the cell explicitly so logos of any aspect ratio - including SVGs that
+   carry no intrinsic width/height - scale predictably instead of collapsing. */
+.logo-grid-item a,
+.logo-grid-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-grid-item img {
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .logo-grid-item {
+    width: 140px;
+    height: 90px;
+  }
+}

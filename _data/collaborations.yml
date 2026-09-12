@@ -1,0 +1,13 @@
+# Institutions the lab collaborates with.
+#
+# For each entry:
+#   name: shown as the image alt text and tooltip (required)
+#   logo: filename inside images/collaborations/ (required)
+#   url:  optional link to the institution's website
+#
+# Logos are scaled to fit a uniform cell, so any size or aspect ratio works.
+# PNG with a transparent background looks best; SVG is ideal if you have it.
+#
+# - name: KU Leuven
+#   logo: kuleuven.png
+#   url: https://www.kuleuven.be/
