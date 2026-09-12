@@ -31,3 +31,16 @@
 - name: KU Leuven
   logo: kuleuven.png
   url: https://www.kuleuven.be/english/about-kuleuven/
+
+- name: McGill University
+  logo: mcgill.png
+  url: https://www.mcgill.ca/
+
+- name: SAIT
+  logo: sait.png
+  url: https://english.siat.ac.cn/about/
+
+- name: University of Sharjah
+  logo: sharjah.png
+  url: https://www.sharjah.ac.ae/
+
